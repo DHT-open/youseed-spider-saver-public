@@ -1,0 +1,90 @@
+#LOGO
+banner: banner.txt
+
+###########写入配置############
+#设置更新数据到ES搜索引擎的时间，不设置时为长驻内存并随时更新
+#设置时每天固定更新一次，格式为“hh:mm:ss”，例如04:00:00为每天4点更新
+esUpdateTime: '00:04:00'
+
+includeCategories: 
+
+###########连接配置############
+#RabbitMQ连接配置
+mq: 
+  host: 118.24.125.88
+  port: 5672
+
+  username: hash
+  password: hash
+  virtualHost: /
+
+#MongoDB连接配置
+mongo: 
+  url: 127.0.0.1
+  port: 27017
+  db: seed
+  admindb: 
+  user: 
+  psw: 
+
+#ES搜索引擎连接配置 
+es:
+  url: 127.0.0.1
+  port: 9300
+
+#mysql连接配置
+mysql:
+  url: jdbc:mysql://localhost:3306/zsky?serverTimezone=GMT%2B8
+  user: root
+  psw: activezz1983
+  
+
+#########全局配置#########
+#消息队列声明和消费者绑定配置
+binding: 
+  es:
+    exchage: search
+    new: 
+      queue: search.new.1
+      routing: 'search.new.*'
+    update:
+      queue: search.update.1
+      routing: 'search.update.*'
+  mongo:
+    exchage: store
+    new: 
+      queue: store.new.0
+      routing: 'store.new.*'
+    update:
+      queue: store.update.0
+      routing: 'store.update.*'
+    stat:
+      queue: store.stat.0
+      routing: 'store.stat.*'
+  mysql:
+    exchage: store
+    new: 
+      queue: store.new.0
+      routing: 'store.new.*'
+    update:
+      queue: store.update.0
+      routing: 'store.update.*'
+    stat:
+      queue: store.stat.0
+      routing: 'store.stat.*'
+      
+#存储数据的表名、索引名称等配置
+store:
+  es:
+    index: seed_movie
+    type: seed_movie
+  mongo:
+    hash: seed_hash
+    filelist: seed_filelist
+    stat: seed_stat
+  mysql:
+    hash: search_hash
+    filelist: search_filelist
+    stat: search_statusreport
+    
+    
