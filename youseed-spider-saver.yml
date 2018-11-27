@@ -11,7 +11,7 @@ includeCategories:
 ###########连接配置############
 #RabbitMQ连接配置
 mq: 
-  host: 118.24.125.88
+  host: 127.0.0.1
   port: 5672
 
   username: youseed

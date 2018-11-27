@@ -154,19 +154,44 @@ public class Main {
 		else if ("es3".equals(order)) {
 			new org.youseed.spider.saver.es.UpdateHashOnTime().consume();
 		}
+		
+		//--zsky写入+更新操作
+		if ("zsky".equals(order)) {
+			new org.youseed.spider.saver.zsky.NewHash().consume();
+			new org.youseed.spider.saver.zsky.UpdateHash().consume();
+			new org.youseed.spider.saver.zsky.SaveStat().consume();
+		} 
+
+		//--写入新资源到zsky
+		else if ("zsky1".equals(order)) {
+			new org.youseed.spider.saver.zsky.NewHash().consume();
+		} 
+		
+		//--更新资源到zsky
+		else if ("zsky2".equals(order)) {
+			new org.youseed.spider.saver.zsky.UpdateHash().consume();
+		} 
+		
+		//--写入爬虫日志到zsky
+		else if ("zsky3".equals(order)) {
+			new org.youseed.spider.saver.zsky.SaveStat().consume();
+		} 
 	}
 
 	public static String getOperId() {
 		Map<String, String> oper = new LinkedHashMap();
 		oper.put("m", "写入/更新Mongodb");
-		oper.put("|-------m1", "写入新资源到Mongo");
-		oper.put("|-------m2", "更新Mongo");
-		oper.put("|-------m3", "写入统计到Mongo");
+		oper.put("m1", "\t|-------写入新资源到Mongo");
+		oper.put("m2", "\t|-------更新Mongo");
+		oper.put("m3", "\t|-------写入统计到Mongo");
 		oper.put("es", "写入/更新ES（根据esUpdateTime设置，自动选择实时或定时更新）");
-		oper.put("|-------es1", "写入新资源到ES");
-		oper.put("|-------es2", "更新ES（常驻内存并实时更新）");
-		oper.put("|-------es3", "更新ES（更新完毕当前批次后关闭）");
-		
+		oper.put("es1", "\t|-------写入新资源到ES");
+		oper.put("es2", "\t|-------更新ES（常驻内存并实时更新）");
+		oper.put("es3", "\t|-------更新ES（更新完毕当前批次后关闭）");
+		oper.put("zsky", "写入/更新纸上烤鱼（zsky）");
+		oper.put("zsky1", "\t|-------写入新资源到Mysql");
+		oper.put("zsky2", "\t|-------更新Mysql");
+		oper.put("zsky3", "\t|-------写入统计到Mysql");	
 
 		Scanner sc = new Scanner(System.in);
 

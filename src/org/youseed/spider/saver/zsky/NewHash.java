@@ -49,7 +49,7 @@ public class NewHash extends MysqlBasic {
 	/**
 	 * 处理Hash
 	 */
-	public void consume() throws IOException, DBException {
+	public void consume() throws IOException {
 		
 		//初始化数据库连接
 		MysqlConn.initDB();
