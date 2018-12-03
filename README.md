@@ -2,6 +2,13 @@
 
 此程序使用Java编写，负责将rabbitMQ消息队列中的数据保存至数据库或者搜索引擎。
 
+![](img/work.png)
+
+注意：此程序是上图右侧方框“保存磁力数据”的部分。
+
+- DHT爬虫：[https://github.com/dht-open/youseed-spider-public](https://github.com/DHT-open/youseed-spider-public)
+- 爬虫数据入库：[https://github.com/DHT-open/youseed-spider-saver-public](https://github.com/DHT-open/youseed-spider-saver-public)
+
 *此程序仅用作技术学习和研究*
 
 # 功能 #
