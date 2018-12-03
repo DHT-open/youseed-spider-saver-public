@@ -19,6 +19,7 @@
 
 1. 兼容性：支持Mongodb、Mysql和Elasticsearch搜索引擎；
 2. 实时和定时：支持Elasticsearch中新资源的实时索引，支持旧资源的定时更新；
+3. 支持不良资源鉴定：依据`spam.txt`中的关键字鉴别不良资源，并予以标记
 
 
 # 硬件要求 #
@@ -64,3 +65,36 @@
       url: jdbc:mysql://localhost:3306/zsky?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
       user: root
       psw: 
+
+
+# 运行 #
+
+## 控制台运行 ##
+使用如下命令在控制台运行入库程序：
+
+    java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml
+
+程序会输出可选命令：
+    
+    m: 写入/更新Mongodb
+    m1: 	|-------写入新资源到Mongo
+    m2: 	|-------更新Mongo
+    m3: 	|-------写入统计到Mongo
+    es: 写入/更新ES（根据esUpdateTime设置，自动选择实时或定时更新）
+    es1: 	|-------写入新资源到ES
+    es2: 	|-------更新ES（常驻内存并实时更新）
+    es3: 	|-------更新ES（更新完毕当前批次后关闭）
+    zsky: 写入/更新纸上烤鱼（zsky）
+    zsky1: 	|-------写入新资源到Mysql
+    zsky2: 	|-------更新Mysql
+    zsky3: 	|-------写入统计到Mysql
+    
+    请选择一项操作（输入编号后回车）:
+    
+接下来输入`zsky`保存到“纸上烤鱼”数据库
+
+## 后台运行 ##
+输入如下命令，后台启动“纸上烤鱼”入库
+
+    nohup java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml zsky > /opt/spider/logs/spider-saver-mongo.log 2>&1 &
+
