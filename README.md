@@ -77,7 +77,7 @@
 # 运行 #
 
 ## 控制台运行 ##
-使用如下命令在控制台运行入库程序：
+使用如下命令在控制台运行入库程序（注意--config的值必须是绝对路径）：
 
     java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml
 
