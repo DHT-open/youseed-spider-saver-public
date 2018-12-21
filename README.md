@@ -76,10 +76,13 @@
 
 # 运行 #
 
+编译好的程序在这里下载：
+[https://github.com/DHT-open/youseed-spider-saver-public/releases](https://github.com/DHT-open/youseed-spider-saver-public/releases "https://github.com/DHT-open/youseed-spider-saver-public/releases")
+
 ## 控制台运行 ##
 使用如下命令在控制台运行入库程序（注意--config的值必须是绝对路径）：
 
-    java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml
+    java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-public-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml
 
 程序会输出可选命令：
     
@@ -103,5 +106,5 @@
 ## 后台运行 ##
 输入如下命令，后台启动“纸上烤鱼”入库
 
-    nohup java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml zsky > /opt/spider/logs/spider-saver-mongo.log 2>&1 &
+    nohup java -jar -Xms50m -Xmx128m /opt/spider/app/youseed-spider-saver-public-1.0.0.jar --config=/opt/spider/app/youseed-spider-saver.yml zsky > /opt/spider/logs/spider-saver-mongo.log 2>&1 &
 
